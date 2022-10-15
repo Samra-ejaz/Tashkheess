@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Meetings Arranged</title>
+{% endblock head %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        {% for meeting in meetings %}
+        <div class="col-lg-6">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p class="card-text">
+                        <div class="text-bold">Patient:</div>
+                        <u>
+                            <a href="{% url 'patient_detail' id=meeting.patient.id %}">
+                                {{ meeting.patient.full_name }}
+                            </a>
+                        </u>
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Doctor:</div> {{ meeting.doctor.full_name }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Date & Time:</div> {{ meeting.date_time }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Reason:</div> {{ meeting.reason }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

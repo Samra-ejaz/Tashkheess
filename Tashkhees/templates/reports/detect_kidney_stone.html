@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<title>Stone Detection</title>
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            {% if form %}
+            <div class="card my-6">
+                <div class="card-header pb-0 text-left bg-transparent">
+                    <h3 class="font-weight-bolder text-info text-gradient">Detect Kidney Stones</h3>
+                </div>
+                <div class="card-body">
+                    <form role="form" method="post" action="{% url 'detect_kidney_stones' %}"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <div class="text-center">
+                            <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+            <div class="card my-6">
+                <div class="card-header pb-0 text-left bg-transparent">
+                    <h3 class="font-weight-bolder text-info text-gradient">Processed Report</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="card-text">
+                                <div class="text-bold">Is Stone Detected:</div> {{ stone_detection.is_stone_detected }}
+                            </p>
+                            {% if stone_detection.is_stone_detected %}
+                            <p class="card-text">
+                                <div class="text-bold">No. Of stones:</div> {{ stone_detection.number_of_stones }}
+                            </p>
+                            <a href="{{stone_detection.processed_image.url}}" download="report.jpg"
+                                class="btn btn-info btn-block">Download Image</a>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-6">
+                            <img src="{{stone_detection.processed_image.url}}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

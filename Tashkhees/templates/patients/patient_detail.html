@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{patient.full_name}}</title>
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="card-title font-weight-bolder text-info text-gradient">{{patient.full_name}}</h3>
+            <h6>ID : {{patient.id}}</h6>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="card-text">
+                        <div class="text-bold">Email:</div> {{ patient.email }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Phone:</div> {{ patient.phone }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Address:</div> {{ patient.address }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">City:</div> {{ patient.city }}
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <p class="card-text">
+                        <div class="text-bold">State:</div> {{ patient.state }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Zip Code:</div> {{ patient.zip_code }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Gender:</div> {{ patient.get_gender_display }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Age:</div> {{ patient.age }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
