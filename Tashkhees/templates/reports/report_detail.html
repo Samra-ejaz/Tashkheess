@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{report.title}}</title>
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="card-title font-weight-bolder text-info text-gradient">{{report.title}}</h3>
+            <h6>ID : {{report.uuid}}</h6>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="card-text">
+                        <div class="text-bold">Description:</div> {{ report.description }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Uploaded At:</div> {{ report.date_time|date:"M d, Y" }}
+                    </p>
+                    <p class="card-text">
+                        <div class="text-bold">Patient:</div> {{ patient.full_name }}
+                        <a href="{% url 'patient_detail' id=report.patient.id %}">View Patient Profile</a>
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{{report.image.url}}" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

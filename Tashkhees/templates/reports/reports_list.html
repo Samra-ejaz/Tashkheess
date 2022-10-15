@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Reports List</title>
+{% endblock head %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        {% for report in reports %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ report.title }}</h5>
+                    <p class="card-text">{{report.description|truncatewords:50}}...</p>
+                    <a href="{{report.get_absolute_url}}" class="btn btn-sm bg-gradient-info">View
+                        Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
